@@ -8,8 +8,8 @@ var list_of_generated_passwords = "";
  * @constructor
  */
 function Generator(language) {
-   this.language = language;
-}
+  this.language = language;
+};
 
 /**
  * Возвращает слово из нужного количества букв
@@ -22,21 +22,21 @@ function Generator(language) {
  * @return {String} Cформированное случайное слово (Например: "букаке")
 */
 Generator.prototype.generate = function(length) {
-   var result = '';
+  var result = '';
 
-   while (result.length <= length) {
-      var consonant = get_random_latter(this.language.consonant_letters, this.language.consonant_letters_priority);
-      var vowel = get_random_latter(this.language.vowel_letters, this.language.vowel_letters_priority);
-      var syllable = consonant + vowel;
+  while (result.length <= length) {
+    var consonant = this.get_random_latter(this.language.consonant_letters, this.language.consonant_letters_priority);
+    var vowel = this.get_random_latter(this.language.vowel_letters, this.language.vowel_letters_priority);
+    var syllable = consonant + vowel;
 
-      if (Math.random() < this.language.frequency_the_third_letter) {
-        syllable += get_random_latter(this.language.consonant_letters, this.language.consonant_letters_priority)
-      }
-      result += syllable;
-   }
+    if (Math.random() < this.language.frequency_the_third_letter) {
+      syllable += this.get_random_latter(this.language.consonant_letters, this.language.consonant_letters_priority)
+    }
+    result += syllable;
+  }
 
-   result = result.substr(0, length);
-   return result;
+  result = result.substr(0, length);
+  return result;
 };
 
 /**
@@ -51,21 +51,21 @@ Generator.prototype.generate = function(length) {
  * @return {string} одна буква
  * @private
  */
-get_random_latter = function(letters, priority) {
-   var summ = 0;
-   for (i = 0;i < priority.length;i++){
-      summ = summ + priority[i];
-   }
+Generator.prototype.get_random_latter = function(letters, priority) {
+  var sum = 0;
+  for (i = 0;i < priority.length;i++){
+    sum = sum + priority[i];
+  }
 
-   var random = Math.floor(Math.random()*summ),
-       amount_of_priorities_to_i = 0;
+  var random = Math.floor(Math.random()*sum),
+     sum_of_priorities_before_i = 0;
 
-   for (i = 0;i < priority.length;i++){
-      amount_of_priorities_to_i += priority[i];
-      if (random < amount_of_priorities_to_i) {
-         var number_latter = i;
-         break;
-      }
-   }
-   return letters[number_latter];
+  for (i = 0;i < priority.length;i++){
+   sum_of_priorities_before_i += priority[i];
+   if (random < sum_of_priorities_before_i) {
+     var number_latter = i;
+       break;
+     }
+  }
+  return letters[number_latter];
 };
