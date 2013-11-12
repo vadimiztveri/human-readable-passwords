@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Генератор человекопонятных паролей по-русски на JS</title>
+		<meta http-equiv="Content-Language" content="ru">
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<link type="text/css" href="css/all.css" rel="stylesheet" />
+	</head>
+	<body>
+		<h1>Генератор человекопонятных паролей<br>по-русски на JS</h1>
+
+		<form>
+			<p><input type="radio" name="lang" id="castom_lang_ru" checked><label for="castom_lang_ru"> Русский</label></p>
+			<p><input type="radio" name="lang" id="castom_lang_en"><label for="castom_lang_en"> Английский</label></p>
+			<p><input type="text" name="length" value="8" style="font-size:150%;"></p>
+			<p>
+				<button id="butt" autofocus onClick="(new UI(this.form)).run();return false;">Давай!</button>
+				<button onClick="clean();return false;">Удалить</button>
+			</p>
+		</form>
+
+	<div id="text"></div>
+
+	<script src="js/all.js"></script>
+
+  </body>
+</html>
